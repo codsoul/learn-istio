@@ -1,0 +1,247 @@
+##################################################################################################
+# MS-PRODUCTS
+##################################################################################################
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: products
+  labels:
+    app: products
+    service: products
+spec:
+  ports:
+  - port: 9080
+    name: http
+  selector:
+    app: products
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ms-products
+  labels:
+    account: products
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: products-v1
+  labels:
+    app: products
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: products
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: products
+        version: v1
+    spec:
+      serviceAccountName: ms-products
+      containers:
+      - name: products
+        image: docker.io/codsoul/learn-istio-examples-products-v1:1.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9080
+---
+##################################################################################################
+# MS-ORDERS
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: orders
+  labels:
+    app: orders
+    service: orders
+spec:
+  ports:
+  - port: 9080
+    name: http
+  selector:
+    app: orders
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ms-orders
+  labels:
+    account: orders
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orders-v1
+  labels:
+    app: orders
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orders
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: orders
+        version: v1
+    spec:
+      serviceAccountName: ms-orders
+      containers:
+      - name: orders
+        image: docker.io/codsoul/learn-istio-examples-orders-v1:1.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9080
+---
+##################################################################################################
+# MS-MEMBERS
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: members
+  labels:
+    app: members
+    service: members
+spec:
+  ports:
+  - port: 9080
+    name: http
+  selector:
+    app: members
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ms-members
+  labels:
+    account: members
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: members-v1
+  labels:
+    app: members
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: members
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: members
+        version: v1
+    spec:
+      serviceAccountName: ms-members
+      containers:
+      - name: members
+        image: docker.io/codsoul/learn-istio-examples-ms-members-v1:1.15.0
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: LOG_DIR
+          value: "/tmp/logs"
+        ports:
+        - containerPort: 9080
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+        - name: wlp-output
+          mountPath: /opt/ibm/wlp/output
+      volumes:
+      - name: wlp-output
+        emptyDir: {}
+      - name: tmp
+        emptyDir: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: members-v2
+  labels:
+    app: members
+    version: v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: members
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: members
+        version: v2
+    spec:
+      serviceAccountName: ms-members
+      containers:
+      - name: members
+        image: docker.io/codsoul/learn-istio-examples-ms-members-v2:1.15.0
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: LOG_DIR
+          value: "/tmp/logs"
+        ports:
+        - containerPort: 9080
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+        - name: wlp-output
+          mountPath: /opt/ibm/wlp/output
+      volumes:
+      - name: wlp-output
+        emptyDir: {}
+      - name: tmp
+        emptyDir: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: members-v3
+  labels:
+    app: members
+    version: v3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: members
+      version: v3
+  template:
+    metadata:
+      labels:
+        app: members
+        version: v3
+    spec:
+      serviceAccountName: ms--members
+      containers:
+      - name: members
+        image: docker.io/codsoul/learn-istio-examples-ms-members-v3:1.15.0
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: LOG_DIR
+          value: "/tmp/logs"
+        ports:
+        - containerPort: 9080
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+        - name: wlp-output
+          mountPath: /opt/ibm/wlp/output
+      volumes:
+      - name: wlp-output
+        emptyDir: {}
+      - name: tmp
+        emptyDir: {}
+---
