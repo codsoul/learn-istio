@@ -17,4 +17,7 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
+    public Member findById(Long id) {
+        return memberRepository.findById(id).orElseThrow(() -> new RuntimeException(""));
+    }
 }

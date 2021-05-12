@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: member
+  main:
+      allow-bean-definition-overriding: true
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+  #datasource:
+      #driverClassName: org.h2.Driver
+      #initialize: true
+      #password: ''
+      #url: jdbc:h2:mem:test;INIT=RUNSCRIPT FROM '~/schema.sql'\;RUNSCRIPT FROM '~/data.sql'"
+      #username: sa
+
+feign:
+  hystrix:
+    enabled: true
+
+management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+logging:
+  level:
+    root: INFO
