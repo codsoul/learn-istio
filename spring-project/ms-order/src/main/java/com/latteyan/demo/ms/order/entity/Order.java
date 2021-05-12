@@ -1,9 +1,8 @@
-package com.latteyan.demo.ms.products.controller.enity;
+package com.latteyan.demo.ms.order.entity;
 
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
 /**
  * Order enity
@@ -11,8 +10,8 @@ import javax.validation.constraints.NotBlank;
  * @author Latte Yan
  */
 @Entity
-@Table(name = "order")
 @Data
+@Table(name = "user_order")
 public class Order {
 
     @Id

@@ -147,7 +147,7 @@ spec:
       serviceAccountName: ms-members
       containers:
       - name: members
-        image: docker.io/codsoul/learn-istio-examples-ms-members-v1:1.15.0
+        image: docker.io/codsoul/learn-istio-examples-ms-members-v1:1.0
         imagePullPolicy: IfNotPresent
         env:
         - name: LOG_DIR
@@ -187,7 +187,7 @@ spec:
       serviceAccountName: ms-members
       containers:
       - name: members
-        image: docker.io/codsoul/learn-istio-examples-ms-members-v2:1.15.0
+        image: docker.io/codsoul/learn-istio-examples-ms-members-v2:1.0
         imagePullPolicy: IfNotPresent
         env:
         - name: LOG_DIR
@@ -227,7 +227,7 @@ spec:
       serviceAccountName: ms--members
       containers:
       - name: members
-        image: docker.io/codsoul/learn-istio-examples-ms-members-v3:1.15.0
+        image: docker.io/codsoul/learn-istio-examples-ms-members-v3:1.0
         imagePullPolicy: IfNotPresent
         env:
         - name: LOG_DIR
