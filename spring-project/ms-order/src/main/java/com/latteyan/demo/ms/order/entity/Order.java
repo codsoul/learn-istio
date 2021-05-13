@@ -3,9 +3,10 @@ package com.latteyan.demo.ms.order.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 /**
- * Order enity
+ * Order entity
  *
  * @author Latte Yan
  */
@@ -17,4 +18,14 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @NotBlank
+    @Column(name = "member_id")
+    private Long memberId;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "description")
+    private String description;
 }

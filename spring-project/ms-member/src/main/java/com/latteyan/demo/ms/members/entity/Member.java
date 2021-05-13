@@ -2,10 +2,7 @@ package com.latteyan.demo.ms.members.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -15,6 +12,7 @@ import javax.validation.constraints.NotBlank;
  */
 @Entity
 @Data
+@Table(name = "user_member")
 public class Member {
 
     @Id
@@ -22,5 +20,6 @@ public class Member {
     private Long id;
 
     @NotBlank
+    @Column(name = "user_name")
     private String userName;
 }

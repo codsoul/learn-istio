@@ -17,4 +17,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public List<Product> findByMemberId(Long memberId) {
+        return productRepository.findByMemberId(memberId);
+    }
 }
