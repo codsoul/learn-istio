@@ -45,8 +45,8 @@ spec:
       serviceAccountName: ms-products
       containers:
       - name: products
-        image: docker.io/codsoul/learn-istio-examples-products-v1:1.0
-        imagePullPolicy: IfNotPresent
+        image: docker.io/codsoul/learn-istio-examples-ms-products-v1:1.0
+        imagePullPolicy: Always
         ports:
         - containerPort: 9080
 ---
@@ -96,8 +96,8 @@ spec:
       serviceAccountName: ms-orders
       containers:
       - name: orders
-        image: docker.io/codsoul/learn-istio-examples-orders-v1:1.0
-        imagePullPolicy: IfNotPresent
+        image: docker.io/codsoul/learn-istio-examples-ms-orders-v1:1.0
+        imagePullPolicy: Always
         ports:
         - containerPort: 9080
 ---
@@ -148,7 +148,7 @@ spec:
       containers:
       - name: members
         image: docker.io/codsoul/learn-istio-examples-ms-members-v1:1.0
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         env:
         - name: LOG_DIR
           value: "/tmp/logs"

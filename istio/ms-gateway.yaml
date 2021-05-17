@@ -26,8 +26,6 @@ spec:
   - match:
     - uri:
         prefix: /members
-    - uri:
-        prefix: /profile
     route:
     - destination:
         host: members
